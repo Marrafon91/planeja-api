@@ -1,0 +1,16 @@
+2026-09-22 08:31:15.765596-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE[*]* FROM TB_CARTAO\000d\000aWHERE id = ""9ad25b8b-a421-4fd5-aa89-b93bb02ebc99"""; expected "identifier"; SQL statement:
+DELETE* FROM TB_CARTAO
+WHERE id = "9ad25b8b-a421-4fd5-aa89-b93bb02ebc99" [42001-240]
+2026-09-22 08:31:39.025298-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE[*]* FROM TB_CARTAO\000d\000aWHERE ID = '9ad25b8b-a421-4fd5-aa89-b93bb02ebc99'"; expected "identifier"; SQL statement:
+DELETE* FROM TB_CARTAO
+WHERE ID = '9ad25b8b-a421-4fd5-aa89-b93bb02ebc99' [42001-240]
+2026-09-22 08:31:51.959864-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE[*]* FROM TB_CARTAO\000d\000aWHERE ID = ""9ad25b8b-a421-4fd5-aa89-b93bb02ebc99"""; expected "identifier"; SQL statement:
+DELETE* FROM TB_CARTAO
+WHERE ID = "9ad25b8b-a421-4fd5-aa89-b93bb02ebc99" [42001-240]
+2026-09-22 08:32:04.378103-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]* FROM TB_CARTAO\000d\000aWHERE ID = ""9ad25b8b-a421-4fd5-aa89-b93bb02ebc99"""; expected "identifier"; SQL statement:
+DELETE * FROM TB_CARTAO
+WHERE ID = "9ad25b8b-a421-4fd5-aa89-b93bb02ebc99" [42001-240]
