@@ -33,6 +33,6 @@ public class CartaoEntity {
 
     @PrePersist
     public void prePersist() {
-        setDataCadastro(LocalDateTime.now());
+        this.dataCadastro = LocalDateTime.now();
     }
 }
