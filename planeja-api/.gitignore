@@ -12,6 +12,7 @@ target/
 .settings
 .springBeans
 .sts4-cache
+.planeja-api/data/
 
 ### IntelliJ IDEA ###
 .idea

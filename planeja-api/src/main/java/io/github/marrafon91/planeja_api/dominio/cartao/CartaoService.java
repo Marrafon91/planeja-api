@@ -1,5 +1,6 @@
 package io.github.marrafon91.planeja_api.dominio.cartao;
 
+import io.github.marrafon91.planeja_api.common.exceptions.ValidationException;
 import io.github.marrafon91.planeja_api.dominio.cartao.dto.CartaoDetalhes;
 import io.github.marrafon91.planeja_api.dominio.cartao.dto.CartaoForm;
 import io.github.marrafon91.planeja_api.dominio.cartao.mapper.CartaoMapper;
@@ -20,9 +21,14 @@ public class CartaoService {
     private CartaoMapper mapper;
 
     public CartaoDetalhes criar(CartaoForm form) {
-    validator.validar(form);
-    CartaoEntity entity = mapper.toEntity(form);
-    repository.save(entity);
-    return mapper.toDetalhes(entity);
+        var result = validator.validar(form);
+
+        if (result.isInvalido()) {
+            throw new ValidationException(result.getCamposInvalidos());
+        }
+
+        CartaoEntity entity = mapper.toEntity(form);
+        repository.save(entity);
+        return mapper.toDetalhes(entity);
     }
 }
