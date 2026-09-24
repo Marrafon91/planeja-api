@@ -26,7 +26,7 @@ public class CartaoService {
 
     @Transactional
     public CartaoDetalhes criar(CartaoForm form) {
-        var result = validator.validar(form);
+        var result = validator.validar(form, null);
 
         if (result.isInvalido()) {
             throw new ValidationException(result.getCamposInvalidos());
@@ -49,7 +49,7 @@ public class CartaoService {
         var entity = repository.findById(id)
                 .orElseThrow(() -> new RegistroNaoEncontradoException("Registro não encontrado"));
 
-        var result = validator.validar(form);
+        var result = validator.validar(form, id);
 
         if (result.isInvalido()) {
             throw new ValidationException(result.getCamposInvalidos());
