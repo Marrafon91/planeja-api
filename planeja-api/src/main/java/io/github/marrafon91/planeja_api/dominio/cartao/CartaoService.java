@@ -8,6 +8,7 @@ import io.github.marrafon91.planeja_api.dominio.cartao.mapper.CartaoMapper;
 import io.github.marrafon91.planeja_api.dominio.cartao.model.CartaoEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -23,6 +24,7 @@ public class CartaoService {
     @Autowired
     private CartaoMapper mapper;
 
+    @Transactional
     public CartaoDetalhes criar(CartaoForm form) {
         var result = validator.validar(form);
 
@@ -35,9 +37,24 @@ public class CartaoService {
         return mapper.toDetalhes(entity);
     }
 
+    @Transactional(readOnly = true)
     public CartaoDetalhes obterDetalhes(UUID id) {
         return repository.findById(id)
                 .map(mapper::toDetalhes)
                 .orElseThrow(() -> new RegistroNaoEncontradoException("Registro não encontrado"));
+    }
+
+    @Transactional
+    public void atualizar(UUID id, CartaoForm form) {
+        var entity = repository.findById(id)
+                .orElseThrow(() -> new RegistroNaoEncontradoException("Registro não encontrado"));
+
+        var result = validator.validar(form);
+
+        if (result.isInvalido()) {
+            throw new ValidationException(result.getCamposInvalidos());
+        }
+        mapper.update(entity, form);
+        repository.save(entity);
     }
 }

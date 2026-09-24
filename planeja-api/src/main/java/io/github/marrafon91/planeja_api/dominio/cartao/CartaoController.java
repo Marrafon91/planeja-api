@@ -29,4 +29,10 @@ public class CartaoController {
         CartaoDetalhes result = service.obterDetalhes(id);
         return ResponseEntity.ok(result);
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> atualizar(@PathVariable("id") UUID id, @Valid @RequestBody CartaoForm form) {
+        service.atualizar(id, form);
+        return ResponseEntity.noContent().build();
+    }
 }
