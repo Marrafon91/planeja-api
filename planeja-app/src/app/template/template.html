@@ -1,0 +1,79 @@
+<div class="flex h-screen">
+  <aside class="flex w-60 flex-col bg-(--turquesa) text-(--branco)">
+    <div class="flex items-center gap-2.5 bg-(--turquesa-escuro) p-5 text-[20px] font-bold">
+      <i class="fa-solid fa-wallet"></i>
+      <span>Planeja</span>
+    </div>
+    <nav class="mt-5 flex flex-col">
+      <a
+        (click)="setActive('dashboard')"
+        [class]="
+          'flex cursor-pointer items-center gap-3 px-4 py-5 text-(--branco) transition-[background-color] duration-300 hover:bg-(--amarelo) hover:text-[#333]' +
+          (activeItem() === 'dashboard' ? ' bg-white/20' : '')
+        "
+      >
+        <i class="fa-solid fa-chart-line"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <a
+        (click)="setActive('cartoes')"
+        [class]="
+          'flex cursor-pointer items-center gap-3 px-4 py-5 text-(--branco) transition-[background-color] duration-300 hover:bg-(--amarelo) hover:text-[#333]' +
+          (activeItem() === 'cartoes' ? ' bg-white/20' : '')
+        "
+      >
+        <i class="fa-solid fa-credit-card"></i>
+        <span>Cartões</span>
+      </a>
+
+      <a
+        (click)="setActive('categorias')"
+        [class]="
+          'flex cursor-pointer items-center gap-3 px-4 py-5 text-(--branco) transition-[background-color] duration-300 hover:bg-(--amarelo) hover:text-[#333]' +
+          (activeItem() === 'categorias' ? ' bg-white/20' : '')
+        "
+      >
+        <i class="fa-solid fa-tags"></i>
+        <span>Categorias</span>
+      </a>
+
+      <a
+        (click)="setActive('lancamentos')"
+        [class]="
+          'flex cursor-pointer items-center gap-3 px-4 py-5 text-(--branco) transition-[background-color] duration-300 hover:bg-(--amarelo) hover:text-[#333]' +
+          (activeItem() === 'lancamentos' ? ' bg-white/20' : '')
+        "
+      >
+        <i class="fa-solid fa-receipt"></i>
+        <span>Lançamentos</span>
+      </a>
+
+      <a
+        (click)="setActive('planejamento')"
+        [class]="
+          'flex cursor-pointer items-center gap-3 px-4 py-5 text-(--branco) transition-[background-color] duration-300 hover:bg-(--amarelo) hover:text-[#333]' +
+          (activeItem() === 'planejamento' ? ' bg-white/20' : '')
+        "
+      >
+        <i class="fa-solid fa-calendar-check"></i>
+        <span>Planejamento</span>
+      </a>
+
+      <a
+        (click)="setActive('relatorios')"
+        [class]="
+          'flex cursor-pointer items-center gap-3 px-4 py-5 text-(--branco) transition-[background-color] duration-300 hover:bg-(--amarelo) hover:text-[#333]' +
+          (activeItem() === 'relatorios' ? ' bg-white/20' : '')
+        "
+      >
+        <i class="fa-solid fa-file-lines"></i>
+        <span>Relatórios</span>
+      </a>
+    </nav>
+  </aside>
+
+  <div class="flex flex-1 flex-col">
+    <router-outlet></router-outlet>
+  </div>
+</div>
