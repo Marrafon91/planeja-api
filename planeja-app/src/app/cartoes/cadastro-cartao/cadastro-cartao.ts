@@ -2,6 +2,7 @@ import { Component, OnInit, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CartaoService } from '../cartao-service';
 import { DadosCartaoForm, DetalhesCartao } from '../dados-cartao';
+import { ValidationErrorResponse } from '../../common/validation/validation-error-model';
 
 interface CadastroCartaoForm {
   nome: FormControl<string>;
@@ -31,7 +32,25 @@ export class CadastroCartao implements OnInit {
       next: (response: DetalhesCartao) => {
         console.log('recebendo a resposta do servidor: ', response);
       },
-      error: (error) => console.log('ocorreu um erro: ', error),
+      error: (error) => this.onApiError(error),
     });
+  }
+
+  private aplicarErrosValidacao(error: ValidationErrorResponse) {
+    error.camposInvalidos.forEach((ci) => {
+      const control = this.form.get(ci.campo);
+      if (control) {
+        control.setErrors({ apiError: ci.erro });
+        control.markAsTouched();
+      }
+    });
+  }
+
+  private onApiError(response: any): void {
+    if (response.status === 422) {
+      this.aplicarErrosValidacao(response.error);
+      return;
+    }
+    
   }
 }
