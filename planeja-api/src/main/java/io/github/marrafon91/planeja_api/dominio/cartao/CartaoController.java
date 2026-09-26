@@ -13,6 +13,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "cartoes")
+@CrossOrigin("http://localhost:4200/")
 public class CartaoController {
 
     @Autowired
