@@ -1,0 +1,53 @@
+<header
+  class="flex h-16.25 items-center justify-between bg-(--branco) px-6 shadow-[0_2px_8px_rgba(0,0,0,0.05)]"
+>
+  <h1 class="text-[20px] font-semibold">Cadastro de Cartões</h1>
+  <div class="flex items-center justify-center gap-2.5">
+    <span class="">Olá, Usuário</span>
+    <i class="fa-solid fa-circle-user text-[20px]"></i>
+  </div>
+</header>
+
+<main class="p-6">
+  <div class="max-w-125 rounded-[10px] bg-(--branco) p-6 shadow-[0_6px_18px_rgba(0,0,0,0.05)]">
+    <h2 class="mb-5 text-2xl font-bold text-(--turquesa-escuro)">Novo Cartão</h2>
+    <form class="">
+      <div class="mb-1.5">
+        <label class="mb-1.5 block font-medium" for="nome">Nome do Cartão: *</label>
+        <input
+          class="w-full rounded-md border border-[#ddd] p-2.5 text-[14px]"
+          type="text"
+          id="nome"
+          name="nome"
+          placeholder="Ex: meu cartão"
+        />
+      </div>
+
+      <div class="mb-1.5">
+        <label class="mb-1.5 block font-medium" for="bandeira">Bandeira: *</label>
+        <select class="w-full rounded-md border border-[#ddd] p-2.5 text-[14px]">
+          <option>Selecione...</option>
+          <option>Visa</option>
+          <option>Mastercard</option>
+          <option>American Express</option>
+          <option>Dinners</option>
+        </select>
+      </div>
+
+      <div class="mt-5 flex gap-2.5">
+        <button
+          class="cursor-pointer rounded-md border-0 bg-(--turquesa) px-5 py-2.5 font-semibold text-(--branco) transition-colors duration-200 hover:bg-(--turquesa-escuro)"
+          type="submit"
+        >
+          Salvar
+        </button>
+        <button
+          class="cursor-pointer rounded-md border-0 bg-(--amarelo) px-5 py-2.5 font-semibold text-[#333] transition-opacity duration-200 hover:opacity-80"
+          type="button"
+        >
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</main>
