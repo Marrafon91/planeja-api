@@ -3,7 +3,7 @@
 >
   <h1 class="text-[20px] font-semibold">Cadastro de Cartões</h1>
   <div class="flex items-center justify-center gap-2.5">
-    <span class="">Olá, Usuário</span>
+    <span>Olá, Usuário</span>
     <i class="fa-solid fa-circle-user text-[20px]"></i>
   </div>
 </header>
@@ -11,10 +11,11 @@
 <main class="p-6">
   <div class="max-w-125 rounded-[10px] bg-(--branco) p-6 shadow-[0_6px_18px_rgba(0,0,0,0.05)]">
     <h2 class="mb-5 text-2xl font-bold text-(--turquesa-escuro)">Novo Cartão</h2>
-    <form class="">
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()">
       <div class="mb-1.5">
         <label class="mb-1.5 block font-medium" for="nome">Nome do Cartão: *</label>
         <input
+          formControlName="nome"
           class="w-full rounded-md border border-[#ddd] p-2.5 text-[14px]"
           type="text"
           id="nome"
@@ -25,12 +26,16 @@
 
       <div class="mb-1.5">
         <label class="mb-1.5 block font-medium" for="bandeira">Bandeira: *</label>
-        <select class="w-full rounded-md border border-[#ddd] p-2.5 text-[14px]">
-          <option>Selecione...</option>
-          <option>Visa</option>
-          <option>Mastercard</option>
-          <option>American Express</option>
-          <option>Dinners</option>
+        <select
+          formControlName="bandeira"
+          class="w-full rounded-md border border-[#ddd] p-2.5 text-[14px]"
+        >
+          <option value="">Selecione...</option>
+          <option value="VISA">Visa</option>
+          <option value="MASTERCARD">Mastercard</option>
+          <option value="AMERICAN_EXPRESS">American Express</option>
+          <option value="DINNERS">Dinners</option>
+          <option value="ELO">Elo</option>
         </select>
       </div>
 
