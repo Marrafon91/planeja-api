@@ -3,13 +3,14 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { CartaoService } from '../cartao-service';
 import { DadosCartaoForm, DetalhesCartao } from '../dados-cartao';
 import { ValidationErrorResponse } from '../../common/validation/validation-error-model';
+import { CommonModule } from '@angular/common';
 
 interface CadastroCartaoForm {
   nome: FormControl<string>;
   bandeira: FormControl<string>;
 }
 @Component({
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, CommonModule],
   selector: 'app-cadastro-cartao',
   styleUrl: './cadastro-cartao.css',
   templateUrl: './cadastro-cartao.html',
@@ -25,8 +26,19 @@ export class CadastroCartao implements OnInit {
     });
   }
 
+  isFormInvalid(): boolean {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return true;
+    }
+    return false;
+  }
+
   handleSubmit() {
-    console.log(this.form.value);
+    if (this.isFormInvalid()) {
+      return;
+    }
+
     const dadosCartao = this.form.value as DadosCartaoForm;
     this.service.criar(dadosCartao).subscribe({
       next: (response: DetalhesCartao) => {
@@ -51,6 +63,5 @@ export class CadastroCartao implements OnInit {
       this.aplicarErrosValidacao(response.error);
       return;
     }
-    
   }
 }

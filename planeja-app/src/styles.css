@@ -9,13 +9,15 @@
   --cinza-claro: #f4f6f8;
   --cinza-texto: #555;
   --branco: #ffffff;
+  --error: #e74c3c;
 }
 
 * {
   font-family: 'Inter', sans-serif;
 }
 
-html, body {
+html,
+body {
   background-color: var(--cinza-claro);
   color: var(--cinza-texto);
   height: 100%;
