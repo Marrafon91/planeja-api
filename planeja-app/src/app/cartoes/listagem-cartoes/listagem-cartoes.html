@@ -1,1 +1,62 @@
-<p>listagem-cartoes works!</p>
+<header
+  class="flex h-16.25 items-center justify-between bg-(--branco) px-4 shadow-[0_2px_8px_rgba(0,0,0,0.05)] md:px-6"
+>
+  <h1 class="text-lg md:text-2xl">Meus Cartões</h1>
+  <div class="flex items-center justify-center gap-2.5">
+    <span class="hidden sm:inline">Olá, Usuário</span>
+    <i class="fa-solid fa-circle-user text-[20px]"></i>
+  </div>
+</header>
+
+<main class="p-3 md:p-6">
+  <div class="rounded-lg bg-(--branco) p-3 shadow-[0_6px_18px_rgba(0,0,0,0.05)] md:p-6">
+    <div class="mt-5 overflow-x-auto">
+      @if (listagem$ | async; as listagem) {
+        <table class="w-full min-w-130 border-collapse text-[14px]">
+          <thead>
+            <tr class="border-b-2 border-[#ddd] bg-[#f4f6f8]">
+              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Nome</th>
+              <th class="px-3 py-3 text-left font-semibold text-[#333] md:px-4">Bandeira</th>
+              <th class="px-3 py-3 text-left font-semibold text-[#333] md:px-4">Status</th>
+              <th class="px-3 py-3 text-center font-semibold text-[#333] md:px-4">Ações</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (cartao of listagem.content; track cartao.id) {
+              <tr
+                class="border-b border-[#eee] transition-colors duration-200 last:border-b-0 hover:bg-[#f9fafb]"
+              >
+                <td class="px-3 py-3 md:px-4">{{ cartao.nome }}</td>
+                <td class="px-3 py-3 md:px-4">{{ cartao.bandeira }}</td>
+                <td class="px-3 py-3 md:px-4">
+                  <span
+                    class="inline-block rounded-[20px] bg-[#FEF5E7] px-3 py-1.5 text-[12px] font-semibold text-[#F39C12]"
+                    >Inativo</span
+                  >
+                </td>
+                <td class="px-3 py-3 md:px-4">
+                  <div class="flex items-center justify-center gap-2">
+                    <button
+                      class="size-8.5 cursor-pointer rounded-full border-0 bg-[#f4f6f8] text-sm transition-all duration-200 ease-in-out"
+                      type="button"
+                    >
+                      <i class="fa-solid fa-pen"></i>
+                    </button>
+
+                    <button
+                      class="size-8.5 cursor-pointer rounded-full border-0 bg-[#f4f6f8] text-sm transition-all duration-200 ease-in-out"
+                      type="button"
+                    >
+                      <i class="fa-solid fa-ban"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
+    </div>
+  </div>
+</main>
