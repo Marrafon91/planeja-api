@@ -1,0 +1,11 @@
+.disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.active {
+    background-color: var(--turquesa);
+    color: white;
+    border-color: var(--turquesa);
+    font-weight: 600;
+}

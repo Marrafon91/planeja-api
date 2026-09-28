@@ -24,9 +24,7 @@
 
           <tbody>
             @for (cartao of listagem.content; track cartao.id) {
-              <tr
-                class="border-b border-[#eee] transition-colors duration-200 last:border-b-0 hover:bg-[#f9fafb]"
-              >
+              <tr class="border-b border-[#eee] transition-colors duration-200 hover:bg-[#f9fafb]">
                 <td class="px-3 py-3 md:px-4">{{ cartao.nome }}</td>
                 <td class="px-3 py-3 md:px-4">{{ cartao.bandeira }}</td>
                 <td class="px-3 py-3 md:px-4">
@@ -56,6 +54,35 @@
             }
           </tbody>
         </table>
+        <!-- Paginação -->
+        <div class="mt-5 flex items-center justify-between text-[13px] text-[#777]">
+          <span>Mostrando 1 - 10 de 50 Registro</span>
+
+          <div class="flex gap-1.5">
+            <button
+              class="disabled h-8 min-w-8 cursor-pointer rounded-md border border-[#eee] bg-white text-[13px] transition-all duration-200 ease-in-out hover:border-(--turquesa) hover:bg-(--turquesa) hover:text-white"
+              (click)="navegarAnterior(listagem)"
+            >
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            @for (pagina of paginas(listagem.totalPages); track pagina) {
+              <button
+                class="active h-8 min-w-8 cursor-pointer rounded-md border border-[#eee] bg-white text-[13px] transition-all duration-200 ease-in-out hover:border-(--turquesa) hover:bg-(--turquesa) hover:text-white"
+                (click)="navegar(pagina)"
+              >
+                {{ pagina + 1 }}
+              </button>
+            }
+
+            <button
+              class="h-8 min-w-8 cursor-pointer rounded-md border border-[#eee] bg-white text-[13px] transition-all duration-200 ease-in-out hover:border-(--turquesa) hover:bg-(--turquesa) hover:text-white"
+              (click)="navegarProximo(listagem)"
+            >
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
       }
     </div>
   </div>
