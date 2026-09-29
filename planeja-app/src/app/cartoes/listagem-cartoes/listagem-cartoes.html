@@ -36,8 +36,10 @@
                 <td class="px-3 py-3 md:px-4">
                   <div class="flex items-center justify-center gap-2">
                     <button
+                      (click)="prepararEdicao(cartao.id)"
                       class="size-8.5 cursor-pointer rounded-full border-0 bg-[#f4f6f8] text-sm transition-all duration-200 ease-in-out"
                       type="button"
+                      title="Editar"
                     >
                       <i class="fa-solid fa-pen"></i>
                     </button>

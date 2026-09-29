@@ -10,7 +10,9 @@
 
 <main class="p-6">
   <div class="max-w-125 rounded-[10px] bg-(--branco) p-6 shadow-[0_6px_18px_rgba(0,0,0,0.05)]">
-    <h2 class="mb-5 text-2xl font-bold text-(--turquesa-escuro)">Novo Cartão</h2>
+    <h2 class="mb-5 text-2xl font-bold text-(--turquesa-escuro)">
+      {{ idCartaoEdicao ? 'Edição de Cartão' : 'Novo Cartão' }}
+    </h2>
     <form [formGroup]="form" (ngSubmit)="handleSubmit()">
       <div class="mb-1.5">
         <label class="mb-1.5 block font-medium" for="nome">Nome do Cartão: *</label>
@@ -63,7 +65,7 @@
           class="cursor-pointer rounded-md border-0 bg-(--turquesa) px-5 py-2.5 font-semibold text-(--branco) transition-colors duration-200 hover:bg-(--turquesa-escuro)"
           type="submit"
         >
-          Salvar
+          {{ idCartaoEdicao ? 'Atualizar' : 'Salvar' }}
         </button>
         <button
           class="cursor-pointer rounded-md border-0 bg-(--amarelo) px-5 py-2.5 font-semibold text-[#333] transition-opacity duration-200 hover:opacity-80"

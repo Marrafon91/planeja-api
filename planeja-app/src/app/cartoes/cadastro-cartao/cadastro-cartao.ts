@@ -5,6 +5,7 @@ import { DadosCartaoForm, DetalhesCartao } from '../dados-cartao';
 import { ValidationErrorResponse } from '../../common/validation/validation-error-model';
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
+import { ActivatedRoute } from '@angular/router';
 
 interface CadastroCartaoForm {
   nome: FormControl<string>;
@@ -20,11 +21,33 @@ export class CadastroCartao implements OnInit {
   form!: FormGroup<CadastroCartaoForm>;
   service = inject(CartaoService);
   toast = inject(ToastrService);
+  rotaAtiva = inject(ActivatedRoute);
+  idCartaoEdicao?: string | null;
 
   ngOnInit(): void {
     this.form = new FormGroup<CadastroCartaoForm>({
       nome: new FormControl('', { nonNullable: true, validators: Validators.required }),
       bandeira: new FormControl('', { nonNullable: true, validators: Validators.required }),
+    });
+
+    this.carregarDadosParaEdicao();
+  }
+
+  carregarDadosParaEdicao() {
+    this.idCartaoEdicao = this.rotaAtiva.snapshot.queryParamMap.get('id');
+
+    if (!this.idCartaoEdicao) {
+      return;
+    }
+
+    this.service.obterPorId(this.idCartaoEdicao).subscribe({
+      next: (cartao) => {
+        this.form.patchValue({
+          nome: cartao.nome,
+          bandeira: cartao.bandeira,
+        });
+      },
+      error: () => this.toast.error('Erro ao carregar dados do cartão'),
     });
   }
 

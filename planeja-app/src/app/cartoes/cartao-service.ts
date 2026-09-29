@@ -19,4 +19,8 @@ export class CartaoService {
     const url = `${this.baseUrl}?page=${page}&size=${size}`;
     return this.http.get<PageResult<DetalhesCartao>>(url);
   }
+
+  obterPorId(id: string): Observable<DetalhesCartao> {
+    return this.http.get<DetalhesCartao>(`${this.baseUrl}/${id}`);
+  }
 }
