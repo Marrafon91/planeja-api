@@ -6,6 +6,7 @@ import { ValidationErrorResponse } from '../../common/validation/validation-erro
 import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 interface CadastroCartaoForm {
   nome: FormControl<string>;
@@ -66,9 +67,13 @@ export class CadastroCartao implements OnInit {
     }
 
     const dadosCartao = this.form.value as DadosCartaoForm;
-    this.service.criar(dadosCartao).subscribe({
-      next: (response: DetalhesCartao) => {
-        console.log('recebendo a resposta do servidor: ', response);
+
+    const requisicao: Observable<DetalhesCartao | void> = this.idCartaoEdicao
+      ? this.service.atualizar(this.idCartaoEdicao, dadosCartao)
+      : this.service.criar(dadosCartao);
+
+    requisicao.subscribe({
+      next: (response) => {
         this.toast.success('Cartão cadastrado/atualizado com sucesso!');
       },
       error: (error) => this.onApiError(error),
