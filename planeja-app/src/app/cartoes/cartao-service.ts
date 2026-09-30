@@ -25,6 +25,10 @@ export class CartaoService {
   }
 
   atualizar(id: string, dados: DadosCartaoForm): Observable<void> {
-     return this.http.put<void>(`${this.baseUrl}/${id}`, dados);
+    return this.http.put<void>(`${this.baseUrl}/${id}`, dados);
+  }
+
+  mudarStatus(id: string): Observable<void> {
+    return this.http.patch<void>(`${this.baseUrl}/${id}/status`, null);
   }
 }

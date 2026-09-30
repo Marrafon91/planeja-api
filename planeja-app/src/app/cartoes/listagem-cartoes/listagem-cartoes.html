@@ -29,8 +29,13 @@
                 <td class="px-3 py-3 md:px-4">{{ cartao.bandeira }}</td>
                 <td class="px-3 py-3 md:px-4">
                   <span
-                    class="inline-block rounded-[20px] bg-[#FEF5E7] px-3 py-1.5 text-[12px] font-semibold text-[#F39C12]"
-                    >Inativo</span
+                    class="inline-block rounded-[20px]  px-3 py-1.5 text-[12px] font-semibold "
+                    [ngClass]="
+                      cartao.ativo
+                        ? 'bg-[#E8F8F5] text-(--turquesa)'
+                        : 'bg-[#FEF5E7] text-[#F39C12]'
+                    "
+                    >{{ cartao.ativo ? 'Ativo' : 'Inativo' }}</span
                   >
                 </td>
                 <td class="px-3 py-3 md:px-4">
@@ -45,10 +50,14 @@
                     </button>
 
                     <button
-                      class="size-8.5 cursor-pointer rounded-full border-0 bg-[#f4f6f8] text-sm transition-all duration-200 ease-in-out"
+                      class="size-8.5 cursor-pointer rounded-full border-0 text-sm transition-all duration-200 ease-in-out"
                       type="button"
+                      [ngClass]="cartao.ativo ? 'bg-[#e74c3c]' : 'bg-(--turquesa)'"
+                      [attr.title]="cartao.ativo ? 'Desativar' : 'Ativar'"
+                      (click)="mudarStatus(cartao.id)"
                     >
-                      <i class="fa-solid fa-ban"></i>
+                      <i class="fa-solid"
+                       [ngClass]="cartao.ativo ? 'fa-ban' : 'fa-check'"></i>
                     </button>
                   </div>
                 </td>

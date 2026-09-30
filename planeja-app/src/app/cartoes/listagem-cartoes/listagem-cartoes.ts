@@ -5,6 +5,7 @@ import { PageResult } from '../../common/pagnation/page-result';
 import { DetalhesCartao } from '../dados-cartao';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   imports: [CommonModule],
@@ -18,6 +19,7 @@ export class ListagemCartoes implements OnInit {
   listagem$!: Observable<PageResult<DetalhesCartao>>;
   paginaAtual = 0;
   tamanhoPagina = 3;
+  toast = inject(ToastrService);
 
   ngOnInit(): void {
     this.listarCartoes();
@@ -67,6 +69,13 @@ export class ListagemCartoes implements OnInit {
       queryParams: {
         id: idCartao,
       },
+    });
+  }
+
+  mudarStatus(idCartao: string) {
+    this.service.mudarStatus(idCartao).subscribe((next) => {
+      this.toast.success('Registro atualizado com sucesso');
+      this.listarCartoes();
     });
   }
 }
