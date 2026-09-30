@@ -4,11 +4,11 @@ import { Observable } from 'rxjs';
 import { PageResult } from '../../common/pagnation/page-result';
 import { DetalhesCartao } from '../dados-cartao';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   selector: 'app-listagem-cartoes',
   styleUrl: './listagem-cartoes.css',
   templateUrl: './listagem-cartoes.html',

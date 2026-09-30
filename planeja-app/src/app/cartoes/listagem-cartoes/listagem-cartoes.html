@@ -10,6 +10,14 @@
 
 <main class="p-3 md:p-6">
   <div class="rounded-lg bg-(--branco) p-3 shadow-[0_6px_18px_rgba(0,0,0,0.05)] md:p-6">
+    <button
+      routerLink="/paginas/cadastro-cartoes"
+      class="cursor-pointer rounded-md border-0 bg-(--amarelo) px-5 py-2.5 font-semibold text-[#333] transition duration-200"
+      type="button"
+    >
+    <i class="fa-solid fa-plus"></i>
+      Cadastrar novo
+    </button>
     <div class="mt-5 overflow-x-auto">
       @if (listagem$ | async; as listagem) {
         <table class="w-full min-w-130 border-collapse text-[14px]">
@@ -29,7 +37,7 @@
                 <td class="px-3 py-3 md:px-4">{{ cartao.bandeira }}</td>
                 <td class="px-3 py-3 md:px-4">
                   <span
-                    class="inline-block rounded-[20px]  px-3 py-1.5 text-[12px] font-semibold "
+                    class="inline-block rounded-[20px] px-3 py-1.5 text-[12px] font-semibold"
                     [ngClass]="
                       cartao.ativo
                         ? 'bg-[#E8F8F5] text-(--turquesa)'
@@ -42,7 +50,7 @@
                   <div class="flex items-center justify-center gap-2">
                     <button
                       (click)="prepararEdicao(cartao.id)"
-                      class="size-8.5 cursor-pointer rounded-full border-0 bg-[#f4f6f8] text-sm transition-all duration-200 ease-in-out"
+                      class="size-8.5 cursor-pointer rounded-full border-0 bg-[#f4f6f8] text-sm transition-all duration-200 ease-in-out hover:bg-(--turquesa) hover:text-white"
                       type="button"
                       title="Editar"
                     >
@@ -52,12 +60,15 @@
                     <button
                       class="size-8.5 cursor-pointer rounded-full border-0 text-sm transition-all duration-200 ease-in-out"
                       type="button"
-                      [ngClass]="cartao.ativo ? 'bg-[#e74c3c]' : 'bg-(--turquesa)'"
+                      [ngClass]="
+                        cartao.ativo
+                          ? 'hover:bg-[#e74c3c]'
+                          : 'hover:bg-(--turquesa) hover:text-white'
+                      "
                       [attr.title]="cartao.ativo ? 'Desativar' : 'Ativar'"
                       (click)="mudarStatus(cartao.id)"
                     >
-                      <i class="fa-solid"
-                       [ngClass]="cartao.ativo ? 'fa-ban' : 'fa-check'"></i>
+                      <i class="fa-solid" [ngClass]="cartao.ativo ? 'fa-ban' : 'fa-check'"></i>
                     </button>
                   </div>
                 </td>
