@@ -1,4 +1,10 @@
 package io.github.marrafon91.planeja_api.dominio.categoria.dto;
 
-public record CategoriaForm() {
+import jakarta.validation.constraints.NotBlank;
+
+public record CategoriaForm(
+
+        @NotBlank(message = "Campo obrigatório")
+        String nome
+) {
 }
