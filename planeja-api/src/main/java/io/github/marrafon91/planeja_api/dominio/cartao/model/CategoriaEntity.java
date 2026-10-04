@@ -1,4 +1,4 @@
-package io.github.marrafon91.planeja_api.dominio.categoria;
+package io.github.marrafon91.planeja_api.dominio.cartao.model;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;

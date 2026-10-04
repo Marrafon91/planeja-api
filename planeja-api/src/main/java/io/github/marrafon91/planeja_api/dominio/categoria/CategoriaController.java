@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.UUID;
 
 @RestController
-@RequestMapping(value = "categoria")
+@RequestMapping(value = "categorias")
 @CrossOrigin("http://localhost:4200/")
 public class CategoriaController {
 

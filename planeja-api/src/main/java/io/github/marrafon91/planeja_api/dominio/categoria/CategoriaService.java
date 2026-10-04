@@ -3,6 +3,8 @@ package io.github.marrafon91.planeja_api.dominio.categoria;
 import io.github.marrafon91.planeja_api.common.exceptions.RegistroNaoEncontradoException;
 import io.github.marrafon91.planeja_api.common.exceptions.ValidationException;
 import io.github.marrafon91.planeja_api.common.validation.ValidationResult;
+import io.github.marrafon91.planeja_api.dominio.cartao.mapper.CategoriaMapper;
+import io.github.marrafon91.planeja_api.dominio.cartao.model.CategoriaEntity;
 import io.github.marrafon91.planeja_api.dominio.categoria.dto.CategoriaDetalhes;
 import io.github.marrafon91.planeja_api.dominio.categoria.dto.CategoriaForm;
 
