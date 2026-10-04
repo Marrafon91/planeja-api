@@ -6,9 +6,10 @@ import { DetalhesCartao } from '../dados-cartao';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Header } from '../../common/components/header/header';
 
 @Component({
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, Header],
   selector: 'app-listagem-cartoes',
   styleUrl: './listagem-cartoes.css',
   templateUrl: './listagem-cartoes.html',

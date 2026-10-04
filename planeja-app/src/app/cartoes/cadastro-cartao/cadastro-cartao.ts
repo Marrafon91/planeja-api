@@ -7,13 +7,14 @@ import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
+import { Header } from '../../common/components/header/header';
 
 interface CadastroCartaoForm {
   nome: FormControl<string>;
   bandeira: FormControl<string>;
 }
 @Component({
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterModule, Header],
   selector: 'app-cadastro-cartao',
   styleUrl: './cadastro-cartao.css',
   templateUrl: './cadastro-cartao.html',
