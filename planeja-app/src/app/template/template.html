@@ -35,8 +35,9 @@
           'flex cursor-pointer items-center gap-3 px-4 py-5 text-(--branco) transition-[background-color] duration-300 hover:bg-(--amarelo) hover:text-[#333]' +
           (activeItem() === 'categorias' ? ' bg-white/20' : '')
         "
+        [routerLink]="['/paginas/listagem-categorias']"
       >
-        <i class="fa-solid fa-tags"></i>
+        <i class="fa-solid fa-icons"></i>
         <span>Categorias</span>
       </a>
 
