@@ -1,0 +1,25 @@
+import { Service, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { DadosCategoriaForm, DetalhesCategoria } from './dados-categoria';
+import { Observable } from 'rxjs';
+import { PageResult } from '../common/pagnation/page-result';
+
+
+@Service()
+export class CategoriaService {
+  http = inject(HttpClient);
+  baseUrl = 'http://localhost:8080/categorias';
+
+  criar(dados: DadosCategoriaForm): Observable<DetalhesCategoria> {
+    return this.http.post<DetalhesCategoria>(this.baseUrl, dados);
+  }
+
+  listar(page: number = 0, size: number = 10): Observable<PageResult<DetalhesCategoria>> {
+    const url = `${this.baseUrl}?page=${page}&size=${size}`;
+    return this.http.get<PageResult<DetalhesCategoria>>(url);
+  }
+
+  mudarStatus(id: string): Observable<void> {
+    return this.http.patch<void>(`${this.baseUrl}/${id}/status`, null);
+  }
+}

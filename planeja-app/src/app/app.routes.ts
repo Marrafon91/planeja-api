@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Template } from './template/template';
 import { CadastroCartao } from './cartoes/cadastro-cartao/cadastro-cartao';
 import { ListagemCartoes } from './cartoes/listagem-cartoes/listagem-cartoes';
+import { ListagemCategorias } from './categorias/listagem-categorias/listagem-categorias';
 
 export const routes: Routes = [
   {
@@ -15,6 +16,10 @@ export const routes: Routes = [
       {
         path: 'listagem-cartoes',
         component: ListagemCartoes
+      },
+      {
+        path: 'listagem-categorias',
+        component: ListagemCategorias
       }
     ]
   }

@@ -1,0 +1,98 @@
+<app-header titulo="Minhas Categorias"></app-header>
+
+<main class="p-3 md:p-6">
+  <div class="rounded-lg bg-(--branco) p-3 shadow-[0_6px_18px_rgba(0,0,0,0.05)] md:p-6">
+    <button
+      routerLink="/paginas/cadastro-categorias"
+      class="cursor-pointer rounded-md border-0 bg-(--amarelo) px-5 py-2.5 font-semibold text-[#333] transition duration-200"
+      type="button"
+    >
+      <i class="fa-solid fa-plus"></i>
+      Cadastrar novo
+    </button>
+    <div class="mt-5 overflow-x-auto">
+      @if (listagem$ | async; as listagem) {
+        <table class="w-full min-w-130 border-collapse text-[14px]">
+          <thead>
+            <tr class="border-b-2 border-[#ddd] bg-[#f4f6f8]">
+              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Nome</th>
+              <th class="px-3 py-3 text-left font-semibold text-[#333] md:px-4">Status</th>
+              <th class="px-3 py-3 text-center font-semibold text-[#333] md:px-4">Ações</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (cartao of listagem.content; track cartao.id) {
+              <tr class="border-b border-[#eee] transition-colors duration-200 hover:bg-[#f9fafb]">
+                <td class="px-3 py-3 md:px-4">{{ cartao.nome }}</td>
+                <td class="px-3 py-3 md:px-4">
+                  <span
+                    class="inline-block rounded-[20px] px-3 py-1.5 text-[12px] font-semibold"
+                    [ngClass]="
+                      cartao.ativo
+                        ? 'bg-[#E8F8F5] text-(--turquesa)'
+                        : 'bg-[#FEF5E7] text-[#F39C12]'
+                    "
+                    >{{ cartao.ativo ? 'Ativo' : 'Inativo' }}</span
+                  >
+                </td>
+                <td class="px-3 py-3 md:px-4">
+                  <div class="flex items-center justify-center gap-2">
+                    <button
+                      class="size-8.5 cursor-pointer rounded-full border-0 text-sm transition-all duration-200 ease-in-out"
+                      type="button"
+                      [ngClass]="
+                        cartao.ativo
+                          ? 'hover:bg-[#e74c3c]'
+                          : 'hover:bg-(--turquesa) hover:text-white'
+                      "
+                      [attr.title]="cartao.ativo ? 'Desativar' : 'Ativar'"
+                      (click)="mudarStatus(cartao.id)"
+                    >
+                      <i class="fa-solid" [ngClass]="cartao.ativo ? 'fa-ban' : 'fa-check'"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+        <!-- Paginação -->
+        <div class="mt-5 flex items-center justify-between text-[13px] text-[#777]">
+          <span
+            >Mostrando {{ registroInicial(listagem) }} - {{ registroFinal(listagem) }} de
+            {{ listagem.totalElements }} Registros</span
+          >
+
+          <div class="flex gap-1.5">
+            <button
+              class="h-8 min-w-8 cursor-pointer rounded-md border border-[#eee] bg-white text-[13px] transition-all duration-200 ease-in-out hover:border-(--turquesa) hover:bg-(--turquesa) hover:text-white"
+              [class.disabled]="listagem.first"
+              (click)="navegarAnterior(listagem)"
+            >
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            @for (pagina of paginas(listagem.totalPages); track pagina) {
+              <button
+                class="active h-8 min-w-8 cursor-pointer rounded-md border border-[#eee] bg-white text-[13px] transition-all duration-200 ease-in-out hover:border-(--turquesa) hover:bg-(--turquesa) hover:text-white"
+                [class.active]="pagina === listagem.number"
+                (click)="navegar(pagina)"
+              >
+                {{ pagina + 1 }}
+              </button>
+            }
+
+            <button
+              class="h-8 min-w-8 cursor-pointer rounded-md border border-[#eee] bg-white text-[13px] transition-all duration-200 ease-in-out hover:border-(--turquesa) hover:bg-(--turquesa) hover:text-white"
+              [class.disabled]="listagem.last"
+              (click)="navegarProximo(listagem)"
+            >
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</main>
