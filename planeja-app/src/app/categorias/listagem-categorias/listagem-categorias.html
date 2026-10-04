@@ -22,18 +22,18 @@
           </thead>
 
           <tbody>
-            @for (cartao of listagem.content; track cartao.id) {
+            @for (categoria of listagem.content; track categoria.id) {
               <tr class="border-b border-[#eee] transition-colors duration-200 hover:bg-[#f9fafb]">
-                <td class="px-3 py-3 md:px-4">{{ cartao.nome }}</td>
+                <td class="px-3 py-3 md:px-4">{{ categoria.nome }}</td>
                 <td class="px-3 py-3 md:px-4">
                   <span
                     class="inline-block rounded-[20px] px-3 py-1.5 text-[12px] font-semibold"
                     [ngClass]="
-                      cartao.ativo
+                      categoria.ativo
                         ? 'bg-[#E8F8F5] text-(--turquesa)'
                         : 'bg-[#FEF5E7] text-[#F39C12]'
                     "
-                    >{{ cartao.ativo ? 'Ativo' : 'Inativo' }}</span
+                    >{{ categoria.ativo ? 'Ativo' : 'Inativo' }}</span
                   >
                 </td>
                 <td class="px-3 py-3 md:px-4">
@@ -42,14 +42,14 @@
                       class="size-8.5 cursor-pointer rounded-full border-0 text-sm transition-all duration-200 ease-in-out"
                       type="button"
                       [ngClass]="
-                        cartao.ativo
+                        categoria.ativo
                           ? 'hover:bg-[#e74c3c]'
                           : 'hover:bg-(--turquesa) hover:text-white'
                       "
-                      [attr.title]="cartao.ativo ? 'Desativar' : 'Ativar'"
-                      (click)="mudarStatus(cartao.id)"
+                      [attr.title]="categoria.ativo ? 'Desativar' : 'Ativar'"
+                      (click)="mudarStatus(categoria.id)"
                     >
-                      <i class="fa-solid" [ngClass]="cartao.ativo ? 'fa-ban' : 'fa-check'"></i>
+                      <i class="fa-solid" [ngClass]="categoria.ativo ? 'fa-ban' : 'fa-check'"></i>
                     </button>
                   </div>
                 </td>
