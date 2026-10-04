@@ -3,6 +3,7 @@ import { Template } from './template/template';
 import { CadastroCartao } from './cartoes/cadastro-cartao/cadastro-cartao';
 import { ListagemCartoes } from './cartoes/listagem-cartoes/listagem-cartoes';
 import { ListagemCategorias } from './categorias/listagem-categorias/listagem-categorias';
+import { CadastroCategoria } from './categorias/cadastro-categoria/cadastro-categoria';
 
 export const routes: Routes = [
   {
@@ -11,16 +12,20 @@ export const routes: Routes = [
     children: [
       {
         path: 'cadastro-cartoes',
-        component: CadastroCartao
+        component: CadastroCartao,
       },
       {
         path: 'listagem-cartoes',
-        component: ListagemCartoes
+        component: ListagemCartoes,
       },
       {
         path: 'listagem-categorias',
-        component: ListagemCategorias
-      }
-    ]
-  }
+        component: ListagemCategorias,
+      },
+      {
+        path: 'cadastro-categorias',
+        component: CadastroCategoria,
+      },
+    ],
+  },
 ];
