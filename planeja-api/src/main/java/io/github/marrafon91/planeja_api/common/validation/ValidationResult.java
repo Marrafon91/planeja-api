@@ -1,11 +1,14 @@
 package io.github.marrafon91.planeja_api.common.validation;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class ValidationResult {
 
-    private List<CampoInvalido> camposInvalidos;
+    private final List<CampoInvalido> camposInvalidos;
 
     private ValidationResult(List<CampoInvalido> camposInvalidos) {
         this.camposInvalidos = camposInvalidos;
@@ -17,10 +20,6 @@ public class ValidationResult {
 
     public void add(CampoInvalido campoInvalido) {
         this.camposInvalidos.add(campoInvalido);
-    }
-
-    public List<CampoInvalido> getCamposInvalidos() {
-        return camposInvalidos;
     }
 
     public boolean isInvalido() {
