@@ -14,7 +14,7 @@ public record LancamentoForm(
         UUID categoriaId,
 
         @NotNull(message = "Campo Obrigatório")
-        TipoLancamento tipoLancamento,
+        TipoLancamento tipo,
 
         @NotNull(message = "Campo Obrigatório")
         LocalDate data,
