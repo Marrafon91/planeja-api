@@ -1,1 +1,40 @@
-<p>cadastro-lancamento works!</p>
+<app-header titulo="Cadastro de Lançamentos"></app-header>
+
+<main class="p-6">
+  <div class="max-w-125 rounded-[10px] bg-(--branco) p-6 shadow-[0_6px_18px_rgba(0,0,0,0.05)]">
+    <h2 class="mb-6 text-xl font-semibold">Novo Lançamento</h2>
+
+    <form [formGroup]="form" (ngSubmit)="handleSubmit()" class="flex flex-col gap-4">
+      <div class="flex flex-col gap-1.5">
+        <label for="tipo" class="font-medium">Tipo: *</label>
+        <select
+          id="tipo"
+          formControlName="tipo"
+          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none transition duration-200 focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
+        >
+          <option value="">Selecione...</option>
+          <option value="RECEITA">Receita</option>
+          <option value="DESPESA">Despesa</option>
+        </select>
+
+        @if (form.get('tipo')?.touched && form.get('tipo')?.invalid) {
+          <span class="text-sm text-red-500">O Tipo é obrigatório</span>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="categoriaId" class="font-medium">Categoria: *</label>
+        <select
+          id="categoriaId"
+          formControlName="categoriaId"
+          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none transition duration-200 focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
+        >
+          <option value="">Selecione...</option>
+          @for (categoria of categoriasAtivas; track categoria.id) {
+            <option [value]="categoria.id">{{ categoria.nome }}</option>
+          }
+        </select>
+      </div>
+    </form>
+  </div>
+</main>

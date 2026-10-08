@@ -1,11 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { TipoLancanmento } from '../dados-lancamentos';
 import { ToastrService } from 'ngx-toastr';
 import { LancamentoService } from '../lancamento-service';
 import { DetalhesCategoria } from '../../categorias/dados-categoria';
 import { DetalhesCartao } from '../../cartoes/dados-cartao';
 import { forkJoin } from 'rxjs';
+import { Header } from '../../common/components/header/header';
+import { CommonModule } from '@angular/common';
 
 interface CadastroLancamentoForm {
   categoriaId: FormControl<string>;
@@ -16,7 +18,7 @@ interface CadastroLancamentoForm {
 }
 
 @Component({
-  imports: [],
+  imports: [Header, ReactiveFormsModule, CommonModule],
   selector: 'app-cadastro-lancamento',
   styleUrl: './cadastro-lancamento.css',
   templateUrl: './cadastro-lancamento.html',
@@ -50,7 +52,11 @@ export class CadastroLancamento implements OnInit {
         this.categoriasAtivas = resultado.categorias;
         this.cartoesAtivos = resultado.cartoes;
       },
-      error: () => this.toast.error('Erro ao carregar categorias e cartões');
+      error: () => this.toast.error('Erro ao carregar categorias e cartões')
     });
+  }
+
+  handleSubmit() {
+
   }
 }
