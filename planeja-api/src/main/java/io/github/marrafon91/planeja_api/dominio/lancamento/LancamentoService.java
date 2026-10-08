@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class LancamentoService {
 
     @Autowired
-    private LancanmentoRepository repository;
+    private LancamentoRepository repository;
 
     @Autowired
     private CategoriaRepository categoriaRepository;
@@ -37,7 +37,7 @@ public class LancamentoService {
 
         CartaoEntity cartao = null;
         if (form.cartaoId() != null) {
-            cartao = cartaoRepository.findById(form.categoriaId())
+            cartao = cartaoRepository.findById(form.cartaoId())
                     .orElse(null);
         }
 

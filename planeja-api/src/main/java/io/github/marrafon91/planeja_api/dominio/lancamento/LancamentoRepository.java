@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface LancanmentoRepository extends JpaRepository<LancamentoEntity, UUID> {
+public interface LancamentoRepository extends JpaRepository<LancamentoEntity, UUID> {
 }

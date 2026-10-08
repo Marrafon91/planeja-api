@@ -29,8 +29,8 @@ public class LancamentoEntity {
     private CategoriaEntity categoria;
 
     @Enumerated(EnumType.STRING)
-    @Column
-    private TipoLancamento tipoLancamento;
+    @Column(name = "tipo")
+    private TipoLancamento tipo;
 
     @Column(nullable = false)
     private LocalDate data;

@@ -18,3 +18,59 @@ WHERE ID = "9ad25b8b-a421-4fd5-aa89-b93bb02ebc99" [42001-240]
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CARTAO" not found; SQL statement:
 UPDATE cartao
 SET ativo = true [42102-240]
+2026-10-08 09:07:00.850233-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]* FROM TB_LANCAMENTO"; expected "identifier"; SQL statement:
+DELETE * FROM TB_LANCAMENTO [42001-240]
+2026-10-08 09:08:02.157998-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]*\000d\000aFROM TB_LANCAMENTO \000d\000aWHERE id = '36264f9d-87bf-43a2-8830-756beb2f56e9'"; expected "identifier"; SQL statement:
+DELETE *
+FROM TB_LANCAMENTO 
+WHERE id = '36264f9d-87bf-43a2-8830-756beb2f56e9' [42001-240]
+2026-10-08 09:08:12.504627-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]*\000d\000aFROM TB_LANCAMENTO \000d\000aWHERE id = '36264f9d-87bf-43a2-8830-756beb2f56e9'"; expected "identifier"; SQL statement:
+DELETE *
+FROM TB_LANCAMENTO 
+WHERE id = '36264f9d-87bf-43a2-8830-756beb2f56e9' [42001-240]
+2026-10-08 09:08:34.673747-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE [*]*\000d\000aFROM TB_LANCAMENTO \000d\000aWHERE id = '36264f9d-87bf-43a2-8830-756beb2f56e9'"; expected "identifier"; SQL statement:
+DELETE *
+FROM TB_LANCAMENTO 
+WHERE id = '36264f9d-87bf-43a2-8830-756beb2f56e9' [42001-240]
+2026-10-08 09:09:01.110317-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ID" not found; SQL statement:
+DELETE id
+FROM TB_LANCAMENTO 
+WHERE id = '36264f9d-87bf-43a2-8830-756beb2f56e9' [42102-240]
+2026-10-08 09:09:06.003195-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ID" not found; SQL statement:
+DELETE id
+FROM TB_LANCAMENTO 
+WHERE id = '36264f9d-87bf-43a2-8830-756beb2f56e9' [42102-240]
+2026-10-08 09:09:34.132437-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ID" not found; SQL statement:
+DELETE ID
+FROM TB_LANCAMENTO 
+WHERE id = '36264f9d-87bf-43a2-8830-756beb2f56e9' [42102-240]
+2026-10-08 09:09:56.076648-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ID" not found; SQL statement:
+DELETE ID
+FROM TB_LANCAMENTO [42102-240]
+2026-10-08 09:09:59.918546-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ID" not found; SQL statement:
+DELETE ID
+FROM TB_LANCAMENTO [42102-240]
+2026-10-08 09:10:01.084945-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ID" not found; SQL statement:
+DELETE ID
+FROM TB_LANCAMENTO [42102-240]
+2026-10-08 09:10:03.104783-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ID" not found; SQL statement:
+DELETE ID
+FROM TB_LANCAMENTO [42102-240]
+2026-10-08 09:14:02.724794-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLDataException: Data conversion error converting "a2f3219c-a3b2-40d1-a8c9-34912a976799TB_LANCAMENTO "; SQL statement:
+DELETE FROM TB_LANCAMENTO 
+WHERE ID = 'a2f3219c-a3b2-40d1-a8c9-34912a976799TB_LANCAMENTO ' [22018-240]
+2026-10-08 09:22:51.772932-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]TB_LANCAMENTO"; expected "TRUNCATE"; SQL statement:
+TB_LANCAMENTO [42001-240]
