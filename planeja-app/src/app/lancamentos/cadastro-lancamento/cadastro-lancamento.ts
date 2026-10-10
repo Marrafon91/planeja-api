@@ -33,11 +33,17 @@ export class CadastroLancamento implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup<CadastroLancamentoForm>({
-      categoriaId: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
+      categoriaId: new FormControl<string>('', {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
       data: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
       valor: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
-      tipo: new FormControl<TipoLancanmento | ''>('', { nonNullable: true, validators: Validators.required }),
-      cartaoId: new FormControl<string>('', { nonNullable: true}),
+      tipo: new FormControl<TipoLancanmento | ''>('', {
+        nonNullable: true,
+        validators: Validators.required,
+      }),
+      cartaoId: new FormControl<string>('', { nonNullable: true }),
     });
 
     this.inicializarDropDowns();
@@ -52,11 +58,11 @@ export class CadastroLancamento implements OnInit {
         this.categoriasAtivas = resultado.categorias;
         this.cartoesAtivos = resultado.cartoes;
       },
-      error: () => this.toast.error('Erro ao carregar categorias e cartões')
+      error: () => this.toast.error('Erro ao carregar categorias e cartões'),
     });
   }
 
   handleSubmit() {
-
+    console.log(this.form.value);
   }
 }

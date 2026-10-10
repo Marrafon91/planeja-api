@@ -10,7 +10,7 @@
         <select
           id="tipo"
           formControlName="tipo"
-          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none transition duration-200 focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
+          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 transition duration-200 outline-none focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
         >
           <option value="">Selecione...</option>
           <option value="RECEITA">Receita</option>
@@ -27,13 +27,76 @@
         <select
           id="categoriaId"
           formControlName="categoriaId"
-          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 outline-none transition duration-200 focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
+          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 transition duration-200 outline-none focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
         >
           <option value="">Selecione...</option>
           @for (categoria of categoriasAtivas; track categoria.id) {
             <option [value]="categoria.id">{{ categoria.nome }}</option>
           }
         </select>
+
+        @if (form.get('categoriaId')?.touched && form.get('categoriaId')?.invalid) {
+          <span class="text-sm text-red-500">A categoria é obrigatório</span>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="data" class="font-medium">Data: *</label>
+        <input
+          id="data"
+          name="data"
+          formControlName="data"
+          type="date"
+          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 transition duration-200 outline-none focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
+        />
+
+        @if (form.get('data')?.touched && form.get('data')?.invalid) {
+          <span class="text-sm text-red-500">A data é obrigatória</span>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="valor" class="font-medium">Valor: *</label>
+        <input
+          id="valor"
+          name="valor"
+          formControlName="valor"
+          type="text"
+          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 transition duration-200 outline-none focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
+        />
+
+        @if (form.get('valor')?.touched && form.get('valor')?.invalid) {
+          <span class="text-sm text-red-500">O Valor é obrigatório</span>
+        }
+      </div>
+
+      <div class="flex flex-col gap-1.5">
+        <label for="cartaoId" class="font-medium">Cartão: </label>
+        <select
+          id="cartaoId"
+          formControlName="cartaoId"
+          class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 transition duration-200 outline-none focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
+        >
+          <option value="">Selecione...</option>
+          @for (cartao of cartoesAtivos; track cartao.id) {
+            <option [value]="cartao.id">{{ cartao.nome }}</option>
+          }
+        </select>
+      </div>
+
+      <div class="mt-5 flex gap-2.5">
+        <button
+          class="cursor-pointer rounded-md border-0 bg-(--turquesa) px-5 py-2.5 font-semibold text-(--branco) transition-colors duration-200 hover:bg-(--turquesa-escuro)"
+          type="submit"
+        >
+          Salvar
+        </button>
+        <button
+          class="cursor-pointer rounded-md border-0 bg-(--amarelo) px-5 py-2.5 font-semibold text-[#333] transition-opacity duration-200 hover:opacity-80"
+          type="button"
+        >
+          Cancelar
+        </button>
       </div>
     </form>
   </div>
