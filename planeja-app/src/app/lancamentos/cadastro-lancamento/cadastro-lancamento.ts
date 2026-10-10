@@ -8,6 +8,7 @@ import { DetalhesCartao } from '../../cartoes/dados-cartao';
 import { forkJoin } from 'rxjs';
 import { Header } from '../../common/components/header/header';
 import { CommonModule } from '@angular/common';
+import { NgxMaskDirective } from 'ngx-mask';
 
 interface CadastroLancamentoForm {
   categoriaId: FormControl<string>;
@@ -18,7 +19,7 @@ interface CadastroLancamentoForm {
 }
 
 @Component({
-  imports: [Header, ReactiveFormsModule, CommonModule],
+  imports: [Header, ReactiveFormsModule, CommonModule, NgxMaskDirective],
   selector: 'app-cadastro-lancamento',
   styleUrl: './cadastro-lancamento.css',
   templateUrl: './cadastro-lancamento.html',
@@ -60,6 +61,17 @@ export class CadastroLancamento implements OnInit {
       },
       error: () => this.toast.error('Erro ao carregar categorias e cartões'),
     });
+  }
+
+  isDespesa(): boolean {
+    return this.form.controls.tipo.value === 'DESPESA';
+  }
+
+  handleTipoChange(): void {
+    if (!this.isDespesa()) {
+      this.form.controls.cartaoId.setValue('');
+      this.form.controls.cartaoId.setErrors(null);
+    }
   }
 
   handleSubmit() {
