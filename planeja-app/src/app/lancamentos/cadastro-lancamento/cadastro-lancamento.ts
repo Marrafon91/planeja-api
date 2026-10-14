@@ -39,7 +39,10 @@ export class CadastroLancamento implements OnInit {
         validators: Validators.required,
       }),
       data: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
-      valor: new FormControl<string>('', { nonNullable: true, validators: Validators.required }),
+      valor: new FormControl<string>('', {
+        nonNullable: true,
+        validators: [Validators.required, Validators.min(1)],
+      }),
       tipo: new FormControl<TipoLancanmento | ''>('', {
         nonNullable: true,
         validators: Validators.required,
@@ -74,7 +77,19 @@ export class CadastroLancamento implements OnInit {
     }
   }
 
+  isFormInvalid(): boolean {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      this.toast.error('Erro de validação. Verifique os valores informados. ');
+      return true;
+    }
+    return false;
+  }
+
   handleSubmit() {
+    if (this.isFormInvalid()) {
+      return
+    }
     console.log(this.form.value);
   }
 }
