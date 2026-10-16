@@ -14,7 +14,6 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping(value = "categorias")
-@CrossOrigin("http://localhost:4200/")
 public class CategoriaController {
 
     @Autowired

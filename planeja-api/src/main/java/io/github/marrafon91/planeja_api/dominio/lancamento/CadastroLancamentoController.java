@@ -16,7 +16,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/lancamentos")
-@CrossOrigin("http://localhost:4200")
 public class CadastroLancamentoController {
 
     @Autowired
