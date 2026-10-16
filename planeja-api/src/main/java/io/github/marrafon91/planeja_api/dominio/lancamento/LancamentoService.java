@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import java.time.YearMonth;
 import java.util.UUID;
 
-import static io.github.marrafon91.planeja_api.dominio.lancamento.LancamentoSpecs.tipoEqual;
+import static io.github.marrafon91.planeja_api.dominio.lancamento.LancamentoSpecs.*;
 
 @Service
 public class LancamentoService {
@@ -39,7 +39,7 @@ public class LancamentoService {
     @Autowired
     private LancamentoMapper mapper;
 
-    public LancamentoDetalhes criar(LancamentoForm  form){
+    public LancamentoDetalhes criar(LancamentoForm form) {
 
         CategoriaEntity categoria = categoriaRepository.findById(form.categoriaId())
                 .orElse(null);
@@ -52,7 +52,7 @@ public class LancamentoService {
 
         var result = validator.validar(form, categoria, cartao);
         if (result.isInvalido()) {
-            throw  new ValidationException(result.getCamposInvalidos());
+            throw new ValidationException(result.getCamposInvalidos());
         }
 
         LancamentoEntity entity = mapper.toEntity(form, categoria, cartao);
@@ -70,6 +70,15 @@ public class LancamentoService {
             spec = spec.and(tipoEqual(tipo));
         }
 
+        if (categoriaId != null) {
+            spec = spec.and(categoriaEqual(categoriaId));
+        }
+
+        if (mes != null) {
+            spec = spec.and(mesEqual(mes));
+        }
+
         var resultado = repository.findAll(spec, pageRequest);
+        return resultado.map(mapper::toDetalhes);
     }
 }
