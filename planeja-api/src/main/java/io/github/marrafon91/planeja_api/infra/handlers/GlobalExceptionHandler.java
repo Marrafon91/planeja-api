@@ -10,6 +10,7 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.server.ResponseStatusException;
 import tools.jackson.databind.exc.InvalidFormatException;
 
 import java.time.LocalDateTime;
@@ -39,6 +40,16 @@ public class GlobalExceptionHandler {
                 "timestamp", LocalDateTime.now(),
                 "status", HttpStatus.NOT_FOUND.value(),
                 "error", HttpStatus.NOT_FOUND.getReasonPhrase(),
+                "message", e.getMessage()
+        ));
+    }
+
+    @ExceptionHandler(ResponseStatusException.class)
+    public ResponseEntity<?> handleResponseStatusExceptions(ResponseStatusException e) {
+        return ResponseEntity.status(e.getStatusCode()).body(Map.of(
+                "timestamp", LocalDateTime.now(),
+                "status", e.getStatusCode().value(),
+                "error", e.getMessage(),
                 "message", e.getMessage()
         ));
     }
