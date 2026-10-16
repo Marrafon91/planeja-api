@@ -9,8 +9,17 @@ import io.github.marrafon91.planeja_api.dominio.lancamento.dto.LancamentoDetalhe
 import io.github.marrafon91.planeja_api.dominio.lancamento.dto.LancamentoForm;
 import io.github.marrafon91.planeja_api.dominio.lancamento.mapper.LancamentoMapper;
 import io.github.marrafon91.planeja_api.dominio.lancamento.model.LancamentoEntity;
+import io.github.marrafon91.planeja_api.dominio.lancamento.model.TipoLancamento;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.time.YearMonth;
+import java.util.UUID;
+
+import static io.github.marrafon91.planeja_api.dominio.lancamento.LancamentoSpecs.tipoEqual;
 
 @Service
 public class LancamentoService {
@@ -50,5 +59,17 @@ public class LancamentoService {
         entity = repository.save(entity);
 
         return mapper.toDetalhes(entity);
+    }
+
+    public Page<LancamentoDetalhes> listar(
+            PageRequest pageRequest, YearMonth mes, TipoLancamento tipo, UUID categoriaId) {
+
+        Specification<LancamentoEntity> spec = Specification.unrestricted();
+
+        if (tipo != null) {
+            spec = spec.and(tipoEqual(tipo));
+        }
+
+        var resultado = repository.findAll(spec, pageRequest);
     }
 }
