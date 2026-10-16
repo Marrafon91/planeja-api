@@ -2,6 +2,7 @@ package io.github.marrafon91.planeja_api.dominio.lancamento.dto;
 
 import io.github.marrafon91.planeja_api.dominio.lancamento.model.TipoLancamento;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
@@ -12,6 +13,9 @@ public record LancamentoForm(
 
         @NotNull(message = "Campo Obrigatório")
         UUID categoriaId,
+
+        @NotBlank(message = "Campo Obrigatório")
+        String descricao,
 
         @NotNull(message = "Campo Obrigatório")
         TipoLancamento tipo,

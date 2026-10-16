@@ -74,3 +74,24 @@ WHERE ID = 'a2f3219c-a3b2-40d1-a8c9-34912a976799TB_LANCAMENTO ' [22018-240]
 2026-10-08 09:22:51.772932-03:00 jdbc[13]: exception
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]TB_LANCAMENTO"; expected "TRUNCATE"; SQL statement:
 TB_LANCAMENTO [42001-240]
+2026-10-16 09:44:25.239675-03:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LANCAMENTO" not found; SQL statement:
+ALTER TABLE lancamento ADD COLUMN descricao varchar(150) [42102-240]
+2026-10-16 09:44:45.472819-03:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LANCAMENTO" not found; SQL statement:
+ALTER TABLE lancamento ADD COLUMN descricao varchar(150) [42102-240]
+2026-10-16 09:45:06.794187-03:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]TB_LANCAMENTO"; expected "TRUNCATE"; SQL statement:
+TB_LANCAMENTO [42001-240]
+2026-10-16 09:47:01.772329-03:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER TABLE tb_lancamento ALTER COLUMN [*]SET not null"; expected "identifier"; SQL statement:
+ALTER TABLE tb_lancamento ALTER COLUMN SET not null [42001-240]
+2026-10-16 09:57:46.346213-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER [*]TB_LANCAMENTO COLUMN tipo 'DESPESA'"; expected "TABLE, USER, INDEX, SCHEMA, SEQUENCE, VIEW, DOMAIN, TYPE"; SQL statement:
+ALTER TB_LANCAMENTO COLUMN tipo 'DESPESA' [42001-240]
+2026-10-16 09:58:03.277054-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER [*]TB_LANCAMENTO SET COLUMN tipo 'DESPESA'"; expected "TABLE, USER, INDEX, SCHEMA, SEQUENCE, VIEW, DOMAIN, TYPE"; SQL statement:
+ALTER TB_LANCAMENTO SET COLUMN tipo 'DESPESA' [42001-240]
+2026-10-16 09:58:17.466070-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "ALTER [*]TB_LANCAMENTO SET COLUMN tipo  = 'DESPESA'"; expected "TABLE, USER, INDEX, SCHEMA, SEQUENCE, VIEW, DOMAIN, TYPE"; SQL statement:
+ALTER TB_LANCAMENTO SET COLUMN tipo  = 'DESPESA' [42001-240]
