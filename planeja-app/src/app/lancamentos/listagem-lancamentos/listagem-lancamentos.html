@@ -13,8 +13,8 @@
 
     <div class="mt-5 overflow-x-auto">
       <form [formGroup]="form" (ngSubmit)="aplicarFiltros()">
-        <div class="">
-          <div class="mb-1.5">
+        <div class="grid grid-cols-12 items-end gap-3">
+          <div class="col-span-12 mb-1.5 md:col-span-4">
             <label for="mes" class="mb-1.5 block font-medium">Mês: </label>
             <input
               type="month"
@@ -25,7 +25,7 @@
             />
           </div>
 
-          <div class="mb-1.5">
+          <div class="col-span-12 mb-1.5 md:col-span-4">
             <label for="tipo" class="mb-1.5 block font-medium">Tipo: </label>
             <select
               name="tipo"
@@ -39,7 +39,7 @@
             </select>
           </div>
 
-          <div class="mb-1.5">
+          <div class="col-span-12 mb-1.5 md:col-span-4">
             <label for="categoriaId" class="mb-1.5 block font-medium">categoriaId: </label>
             <select
               name="categoriaId"
