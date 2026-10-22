@@ -45,4 +45,8 @@ export class LancamentoService {
 
     return this.http.get<PageResult<DetalhesLancamento>>(this.baseUrl, { params });
   }
+
+  listarCategoriasParaFiltrar(): Observable<DetalhesCategoria[]> {
+    return this.http.get<DetalhesCategoria[]>(`${this.baseUrl}/categorias-listagem`);
+  }
 }
