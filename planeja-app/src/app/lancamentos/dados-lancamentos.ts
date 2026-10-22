@@ -10,6 +10,7 @@ export class DadosLancamentosForm {
 
 export class DetalhesLancamento {
   id!: string;
+  descricao!: string;
   categoriaId!: string;
   categoriaNome!: string;
   data!: string;

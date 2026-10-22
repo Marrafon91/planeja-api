@@ -68,8 +68,7 @@ export class ListagemLancamentos implements OnInit {
 
   aplicarFiltros() {
     this.paginaAtual = 0;
-    // this.listarLancamentos();
-    console.log(this.form.value);
+    this.listarLancamentos();
   }
 
   limparFiltros() {

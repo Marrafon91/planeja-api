@@ -55,7 +55,7 @@
           </div>
         </div>
 
-        <div class="mt-5 flex gap-2.5">
+        <div class="my-5 flex gap-2.5">
           <button
             class="cursor-pointer rounded-md border-0 bg-(--turquesa) px-5 py-2.5 font-semibold text-(--branco) transition-colors duration-200 hover:bg-(--turquesa-escuro)"
             type="submit"
@@ -72,6 +72,38 @@
           </button>
         </div>
       </form>
+
+      @if (listagem$ | async; as listagem) {
+        <table class="w-full min-w-130 border-collapse text-[14px]">
+          <thead>
+            <tr class="border-b-2 border-[#ddd] bg-[#f4f6f8]">
+              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Data</th>
+              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Categoria</th>
+              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Tipo</th>
+              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Descrição</th>
+              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Valor</th>
+              <th class="bg-() px-3 py-3 text-center font-semibold text-[#333] md:px-4">Ações</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            @for (lancamento of listagem.content; track lancamento.id) {
+              <tr class="border-b border-[#eee] transition-colors duration-200 hover:bg-[#f9fafb]">
+                <td class="px-3 py-3 md:px-4">{{ lancamento.data | date: 'dd/MM/yyyy' }}</td>
+                <td class="px-3 py-3 md:px-4">{{ lancamento.categoriaNome }}</td>
+                <td class="px-3 py-3 md:px-4">{{ lancamento.tipo }}</td>
+                <td class="px-3 py-3 md:px-4">{{ lancamento.descricao }}</td>
+                <td class="px-3 py-3 md:px-4">{{ lancamento.valor | currency: 'BRL' }}</td>
+                <td class="px-3 py-3 text-center md:px-4">
+                  <button class="cursor-pointer hover:text-red-500" title="Excluir">
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      }
     </div>
   </div>
 </main>
