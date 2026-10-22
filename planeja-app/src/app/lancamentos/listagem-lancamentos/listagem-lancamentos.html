@@ -1,1 +1,77 @@
-<p>listagem-lancamentos works!</p>
+<app-header titulo="Meus Lançamentos"></app-header>
+
+<main class="p-3 md:p-6">
+  <div class="rounded-lg bg-(--branco) p-3 shadow-[0_6px_18px_rgba(0,0,0,0.05)] md:p-6">
+    <button
+      class="cursor-pointer rounded-md border-0 bg-(--amarelo) px-5 py-2.5 font-semibold text-[#333] transition-opacity duration-200 hover:opacity-80"
+      type="button"
+      [routerLink]="['/paginas/cadastro-lancamentos']"
+    >
+      <i class="fa-solid fa-plus"></i>
+      Cadastrar Novo
+    </button>
+
+    <div class="mt-5 overflow-x-auto">
+      <form [formGroup]="form" (ngSubmit)="aplicarFiltros()">
+        <div class="">
+          <div class="mb-1.5">
+            <label for="mes" class="mb-1.5 block font-medium">Mês: </label>
+            <input
+              type="month"
+              id="mes"
+              name="mes"
+              formControlName="mes"
+              class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 transition duration-200 outline-none focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
+            />
+          </div>
+
+          <div class="mb-1.5">
+            <label for="tipo" class="mb-1.5 block font-medium">Tipo: </label>
+            <select
+              name="tipo"
+              id="tipo"
+              formControlName="tipo"
+              class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 transition duration-200 outline-none focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
+            >
+              <option value="">Todos</option>
+              <option value="RECEITA">Receita</option>
+              <option value="DESPESA">Despesa</option>
+            </select>
+          </div>
+
+          <div class="mb-1.5">
+            <label for="categoriaId" class="mb-1.5 block font-medium">categoriaId: </label>
+            <select
+              name="categoriaId"
+              id="categoriaId"
+              formControlName="categoriaId"
+              class="w-full rounded-md border border-gray-300 bg-white px-3 py-2 transition duration-200 outline-none focus:border-(--turquesa-escuro) focus:ring-2 focus:ring-(--turquesa-escuro)/30"
+            >
+              <option value="">Todas</option>
+              @for (categoria of categorias; track categoria.id) {
+                <option [value]="categoria.id">{{ categoria.nome }}</option>
+              }
+            </select>
+          </div>
+        </div>
+
+        <div class="mt-5 flex gap-2.5">
+          <button
+            class="cursor-pointer rounded-md border-0 bg-(--turquesa) px-5 py-2.5 font-semibold text-(--branco) transition-colors duration-200 hover:bg-(--turquesa-escuro)"
+            type="submit"
+          >
+            Filtrar
+          </button>
+
+          <button
+            class="cursor-pointer rounded-md border-0 bg-(--amarelo) px-5 py-2.5 font-semibold text-[#333] transition-opacity duration-200 hover:opacity-80"
+            type="button"
+            (click)="limparFiltros()"
+          >
+            Limpar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>

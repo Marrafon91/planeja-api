@@ -29,7 +29,7 @@ export const routes: Routes = [
         component: CadastroCategoria,
       },
       {
-        path: 'cadastro-lancamento',
+        path: 'cadastro-lancamentos',
         component: CadastroLancamento,
       },
       {

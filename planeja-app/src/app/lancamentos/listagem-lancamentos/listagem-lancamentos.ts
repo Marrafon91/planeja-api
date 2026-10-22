@@ -22,7 +22,6 @@ interface FiltrosForm {
   styleUrl: './listagem-lancamentos.css',
   templateUrl: './listagem-lancamentos.html',
 })
-
 export class ListagemLancamentos implements OnInit {
   service = inject(LancamentoService);
   toast = inject(ToastrService);
@@ -39,10 +38,9 @@ export class ListagemLancamentos implements OnInit {
       tipo: new FormControl<TipoLancanmento | ''>('', { nonNullable: true }),
       categoriaId: new FormControl<string>('', { nonNullable: true }),
     });
-    
+
     this.listarLancamentos();
   }
-
 
   listarLancamentos() {
     const mes = this.form.get('mes')?.value;
@@ -54,12 +52,17 @@ export class ListagemLancamentos implements OnInit {
       size: this.tamanhoPagina,
       mes: mes || undefined,
       tipo: tipo || undefined,
-      categoriaId: categoriaId || undefined
-    })
+      categoriaId: categoriaId || undefined,
+    });
   }
 
   aplicarFiltros() {
     this.paginaAtual = 0;
-    this.listarLancamentos();
+    // this.listarLancamentos();
+    console.log(this.form.value);
+  }
+
+  limparFiltros() {
+    this.form.reset();
   }
 }
