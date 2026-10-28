@@ -77,12 +77,12 @@
         <table class="w-full min-w-130 border-collapse text-[14px]">
           <thead>
             <tr class="border-b-2 border-[#ddd] bg-[#f4f6f8]">
-              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Data</th>
-              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Categoria</th>
-              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Tipo</th>
-              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Descrição</th>
-              <th class="bg-() px-3 py-3 text-left font-semibold text-[#333] md:px-4">Valor</th>
-              <th class="bg-() px-3 py-3 text-center font-semibold text-[#333] md:px-4">Ações</th>
+              <th class="px-3 py-3 text-left font-semibold text-[#333] md:px-4">Data</th>
+              <th class="px-3 py-3 text-left font-semibold text-[#333] md:px-4">Categoria</th>
+              <th class="px-3 py-3 text-left font-semibold text-[#333] md:px-4">Tipo</th>
+              <th class="px-3 py-3 text-left font-semibold text-[#333] md:px-4">Descrição</th>
+              <th class="px-3 py-3 text-left font-semibold text-[#333] md:px-4">Valor</th>
+              <th class="px-3 py-3 text-center font-semibold text-[#333] md:px-4">Ações</th>
             </tr>
           </thead>
 
@@ -103,6 +103,48 @@
             }
           </tbody>
         </table>
+
+        <div class="mt-4 flex flex-col items-start gap-3">
+          <span>
+            Mostrando {{ registroInicial(listagem) }} - {{ registroFinal(listagem) }} de
+            {{ listagem.totalElements }} registros
+          </span>
+
+          <div class="flex flex-wrap gap-1.5">
+            <button
+              type="button"
+              class="h-8 min-w-8 cursor-pointer rounded-md border border-[#eee] bg-white text-[13px] transition-all duration-200 ease-in-out hover:border-(--turquesa) hover:bg-(--turquesa) hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-[#eee] disabled:hover:bg-white disabled:hover:text-inherit"
+              [disabled]="listagem.first"
+              (click)="navegarAnterior(listagem)"
+            >
+              <i class="fa-solid fa-chevron-left"></i>
+            </button>
+
+            @for (pagina of paginas(listagem.totalPages); track pagina) {
+              <button
+                type="button"
+                class="h-8 min-w-8 cursor-pointer rounded-md border text-[13px] transition-all duration-200 ease-in-out"
+                [ngClass]="
+                  pagina === listagem.number
+                    ? 'border-(--turquesa) bg-(--turquesa) font-semibold text-white'
+                    : 'border-[#eee] bg-white hover:border-(--turquesa) hover:bg-(--turquesa) hover:text-white'
+                "
+                (click)="navegar(pagina)"
+              >
+                {{ pagina + 1 }}
+              </button>
+            }
+
+            <button
+              type="button"
+              class="h-8 min-w-8 cursor-pointer rounded-md border border-[#eee] bg-white text-[13px] transition-all duration-200 ease-in-out hover:border-(--turquesa) hover:bg-(--turquesa) hover:text-white disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:border-[#eee] disabled:hover:bg-white disabled:hover:text-inherit"
+              [disabled]="listagem.last"
+              (click)="navegarProximo(listagem)"
+            >
+              <i class="fa-solid fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
       }
     </div>
   </div>
