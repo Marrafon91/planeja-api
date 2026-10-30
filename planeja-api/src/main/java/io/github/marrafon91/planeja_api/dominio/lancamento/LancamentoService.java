@@ -1,5 +1,6 @@
 package io.github.marrafon91.planeja_api.dominio.lancamento;
 
+import io.github.marrafon91.planeja_api.common.exceptions.RegistroNaoEncontradoException;
 import io.github.marrafon91.planeja_api.common.exceptions.ValidationException;
 import io.github.marrafon91.planeja_api.dominio.cartao.CartaoRepository;
 import io.github.marrafon91.planeja_api.dominio.cartao.model.CartaoEntity;
@@ -80,5 +81,11 @@ public class LancamentoService {
 
         var resultado = repository.findAll(spec, pageRequest);
         return resultado.map(mapper::toDetalhes);
+    }
+
+    public void deletar(UUID id) {
+        var lancamento = repository.findById(id)
+                .orElseThrow(() -> new RegistroNaoEncontradoException("Lançamento não encontrado"));
+        repository.delete(lancamento);
     }
 }

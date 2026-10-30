@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { PageResult } from '../../common/pagnation/page-result';
 import { DetalhesCategoria } from '../../categorias/dados-categoria';
+import { signal } from '@angular/core';
 
 interface FiltrosForm {
   mes: FormControl<string>;
@@ -27,6 +28,7 @@ export class ListagemLancamentos implements OnInit {
   toast = inject(ToastrService);
 
   listagem$!: Observable<PageResult<DetalhesLancamento>>;
+  listagem = signal<PageResult<DetalhesLancamento> | null>(null);
   categorias: DetalhesCategoria[] = [];
   paginaAtual = 0;
   tamanhoPagina = 5;
@@ -44,17 +46,20 @@ export class ListagemLancamentos implements OnInit {
   }
 
   listarLancamentos() {
-    const mes = this.form.get('mes')?.value;
-    const tipo = this.form.get('tipo')?.value;
-    const categoriaId = this.form.get('categoriaId')?.value;
+    const { mes, tipo, categoriaId } = this.form.value;
 
-    this.listagem$ = this.service.listar({
-      page: this.paginaAtual,
-      size: this.tamanhoPagina,
-      mes: mes || undefined,
-      tipo: tipo || undefined,
-      categoriaId: categoriaId || undefined,
-    });
+    this.service
+      .listar({
+        page: this.paginaAtual,
+        size: this.tamanhoPagina,
+        mes: mes || undefined,
+        tipo: tipo || undefined,
+        categoriaId: categoriaId || undefined,
+      })
+      .subscribe({
+        next: (resultado) => this.listagem.set(resultado),
+        error: () => this.toast.error('Erro ao carregar lançamentos'),
+      });
   }
 
   listarCategoriasFiltro() {
@@ -73,6 +78,17 @@ export class ListagemLancamentos implements OnInit {
 
   limparFiltros() {
     this.form.reset();
+  }
+
+  deletar(id: string): void {
+    this.service.deletar(id).subscribe({
+      next: () => {
+        console.log('delete ok, vou listar');
+        this.toast.success('Lançamento excluido com sucesso');
+        this.listarLancamentos();
+      },
+      error: () => this.toast.error('Erro ao excluir lançamento'),
+    });
   }
 
   navegar(pagina: number): void {

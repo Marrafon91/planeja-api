@@ -73,7 +73,7 @@
         </div>
       </form>
 
-      @if (listagem$ | async; as listagem) {
+      @if (listagem(); as listagem) {
         <table class="w-full min-w-130 border-collapse text-[14px]">
           <thead>
             <tr class="border-b-2 border-[#ddd] bg-[#f4f6f8]">
@@ -95,7 +95,11 @@
                 <td class="px-3 py-3 md:px-4">{{ lancamento.descricao }}</td>
                 <td class="px-3 py-3 md:px-4">{{ lancamento.valor | currency: 'BRL' }}</td>
                 <td class="px-3 py-3 text-center md:px-4">
-                  <button class="cursor-pointer hover:text-red-500" title="Excluir">
+                  <button
+                    class="cursor-pointer hover:text-red-500"
+                    title="Excluir"
+                    (click)="deletar(lancamento.id)"
+                  >
                     <i class="fa-solid fa-trash"></i>
                   </button>
                 </td>

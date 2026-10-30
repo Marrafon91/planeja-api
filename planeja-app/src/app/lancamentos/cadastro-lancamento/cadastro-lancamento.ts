@@ -10,6 +10,7 @@ import { Header } from '../../common/components/header/header';
 import { CommonModule } from '@angular/common';
 import { NgxMaskDirective } from 'ngx-mask';
 import { ValidationErrorResponse } from '../../common/validation/validation-error-model';
+import { RouterModule } from '@angular/router';
 
 interface CadastroLancamentoForm {
   categoriaId: FormControl<string>;
@@ -21,7 +22,7 @@ interface CadastroLancamentoForm {
 }
 
 @Component({
-  imports: [Header, ReactiveFormsModule, CommonModule, NgxMaskDirective],
+  imports: [Header, ReactiveFormsModule, CommonModule, NgxMaskDirective, RouterModule],
   selector: 'app-cadastro-lancamento',
   styleUrl: './cadastro-lancamento.css',
   templateUrl: './cadastro-lancamento.html',
