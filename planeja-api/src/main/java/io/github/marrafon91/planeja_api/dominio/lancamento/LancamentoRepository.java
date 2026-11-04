@@ -1,11 +1,28 @@
 package io.github.marrafon91.planeja_api.dominio.lancamento;
 
 import io.github.marrafon91.planeja_api.dominio.lancamento.model.LancamentoEntity;
+import io.github.marrafon91.planeja_api.dominio.lancamento.model.TipoLancamento;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public interface LancamentoRepository extends JpaRepository<LancamentoEntity, UUID>,
         JpaSpecificationExecutor<LancamentoEntity> {
+
+    @Query("""
+            SELECT SUM(l.valor)
+                        FROM LancamentoEntity l
+                        WHERE l.tipo = :tipo
+                        AND l.data BETWEEN :inicio AND :fim
+            """)
+    BigDecimal somaPorTipoNoPeriodo(
+            @Param("tipo") TipoLancamento tipo,
+            @Param("inicio") LocalDate inicio,
+            @Param("fim") LocalDate fim
+    );
 }
