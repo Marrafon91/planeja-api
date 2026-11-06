@@ -18,7 +18,7 @@ public interface LancamentoRepository extends JpaRepository<LancamentoEntity, UU
         JpaSpecificationExecutor<LancamentoEntity> {
 
     @Query("""
-            SELECT SUM(l.valor)
+            SELECT coalesce(SUM(l.valor), 0)
                         FROM LancamentoEntity l
                         WHERE l.tipo = :tipo
                         AND l.data BETWEEN :inicio AND :fim
@@ -30,7 +30,7 @@ public interface LancamentoRepository extends JpaRepository<LancamentoEntity, UU
     );
 
     @Query("""
-                SELECT new io.github.marrafon91.planeja_api.dominio.dashboard.dto.DespesaCategoriaResumo(c.nome, SUM(l.valor))
+                SELECT new io.github.marrafon91.planeja_api.dominio.dashboard.dto.DespesaCategoriaResumo(c.nome, coalesce(SUM(l.valor), 0))
                 FROM LancamentoEntity l
                 JOIN l.categoria c
                 WHERE l.tipo = :tipo
