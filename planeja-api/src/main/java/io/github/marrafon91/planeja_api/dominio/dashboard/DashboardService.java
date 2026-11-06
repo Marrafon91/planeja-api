@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.YearMonth;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,13 +29,13 @@ public class DashboardService {
 
         BigDecimal despesas = lancamentoRepository
                 .somaPorTipoNoPeriodo(TipoLancamento.DESPESA, primeiroDiaMes, ultimoDia);
-        
+
         BigDecimal saldo = receitas.subtract(despesas);
 
         ResumoFinanceiro resumoFinanceiro = new ResumoFinanceiro(receitas, despesas, saldo);
 
-        List<DespesaCategoriaResumo> despesasPorCategoria = null;
-
+        List<DespesaCategoriaResumo> despesasPorCategoria = lancamentoRepository
+                .somaPorCategoriaNoPeriodo(TipoLancamento.DESPESA, primeiroDiaMes, ultimoDia);
 
         return new Dashboard(mesAtual.toString(), resumoFinanceiro, despesasPorCategoria);
     }
