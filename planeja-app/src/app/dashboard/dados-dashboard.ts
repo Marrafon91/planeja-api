@@ -9,8 +9,8 @@ export class DespesaCategoriaResumo {
   valor!: string;
 }
 
-export class Dashboar {
+export class Dashboard {
   mes!: string;
-  resumo!: string;
+  resumo!: ResumoFinanceiro;
   despesasPorCategoria!: DespesaCategoriaResumo[];
 }
